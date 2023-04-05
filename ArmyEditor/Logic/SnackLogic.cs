@@ -60,6 +60,7 @@ namespace ArmyEditor.Logic
             {
                 snack.Select(x => x).Where(x => x.Name == snacks.Name).FirstOrDefault().Quantity--;
                 money-=snack.Select(x => x).Where(x => x.Name == snacks.Name).FirstOrDefault().Price;
+                messenger.Send("Price", "SnackInfo");
             }
         }
 
