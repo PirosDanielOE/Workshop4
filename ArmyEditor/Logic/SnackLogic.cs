@@ -28,9 +28,11 @@ namespace ArmyEditor.Logic
             this.snack = snacks;
         }
 
-        public void AddToCart(Snacks snacks)
+        public void AddToCart()
         {
-            snack.Add(snacks);
+            Snacks newsnack = new Snacks();
+            editorService.Edit(newsnack);
+            snack.Add(newsnack);
             messenger.Send("Snack added", "SnackInfo");
         }
 
@@ -52,6 +54,15 @@ namespace ArmyEditor.Logic
                 return this.money;  
             }
         } 
+        public void BuySnack(Snacks snacks)
+        {
+            if (snacks.Quantity != 0)
+            {
+                snack.Select(x => x).Where(x => x.Name == snacks.Name).FirstOrDefault().Quantity--;
+                money-=snack.Select(x => x).Where(x => x.Name == snacks.Name).FirstOrDefault().Price;
+            }
+        }
+
 
 
     }
