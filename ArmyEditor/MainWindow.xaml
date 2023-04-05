@@ -12,65 +12,40 @@
         <vms:MainWindowViewModel />
     </Window.DataContext>
     <Window.Resources>
-        <helpers:NumberToColorConverter x:Key="colorconvert" />
+        <helpers:NumberToColorConverter x:Key="quantityconvert" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{Binding Barrack}" SelectedItem="{Binding SelectedFromBarracks}" HorizontalContentAlignment="Stretch">
+        <ListBox Grid.Column="0" ItemsSource="{Binding Snacks}" SelectedItem="{Binding SelectedSnack}" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="1*" />
-                            </Grid.RowDefinitions>
-                            <Label Content="{Binding Type}" FontSize="14" FontWeight="Bold" />
-                            <Label Content="{Binding Power}" ContentStringFormat="Power: {0}" Grid.Row="1" />
-                            <Label Content="{Binding Speed}" ContentStringFormat="Speed: {0}" Grid.Row="1" Grid.Column="1" />
-                            <ProgressBar Maximum="10" Margin="10" Value="{Binding Power}" Foreground="{Binding Power, Converter={StaticResource colorconvert}}" Grid.Row="2" Height="10" />
-                            <ProgressBar Maximum="10" Margin="10" Value="{Binding Speed}" Foreground="{Binding Speed, Converter={StaticResource colorconvert}}" Grid.Row="2" Height="10" Grid.Column="1" />
-                        </Grid>
-                    </Border>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Content="{Binding Name}" FontSize="14" FontWeight="Bold" Grid.Column="0"/>
+                        <Label Content="{Binding Cost}" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+                        <Label Content="{Binding Quantity}" FontSize="14" FontWeight="Bold" Grid.Column="2"/>
+                        <ProgressBar Maximum="10" Margin="10" Value="{Binding Quantity}" Foreground="{Binding Quantity, Converter={StaticResource quantityconvert}}" Grid.Row="2" Height="10" Grid.Column="3"/>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" >
             <Label HorizontalContentAlignment="Center" FontSize="14"
-                Content="{Binding AllCost}" ContentStringFormat="Cost: {0}$" />
-            <Button Content="Add To Army" Command="{Binding AddToArmyCommand}" Margin="10" Padding="10" />
-            <Button Content="Remove From Army" Command="{Binding RemoveFromArmyCommand}" Margin="10" Padding="10" />
-            <Button Content="Edit Trooper" Command="{Binding EditTrooperCommand}" Margin="10" Padding="10" />
-            <Label HorizontalContentAlignment="Center" FontSize="14"
-                Content="{Binding AVGPower}" ContentStringFormat="Power: {0}" />
-            <ProgressBar Height="20" Maximum="10" 
-                         Value="{Binding AVGPower, Mode=OneWay}" Margin="10"
-                         Foreground="{Binding AVGPower, Mode=OneWay, Converter={StaticResource colorconvert}}"/>
-            <Label HorizontalContentAlignment="Center" FontSize="14"
-                Content="{Binding AVGSpeed}" ContentStringFormat="Speed: {0}" />
-            <ProgressBar Height="20" Maximum="10" 
-                         Value="{Binding AVGSpeed, Mode=OneWay}" Margin="10"
-                         Foreground="{Binding AVGSpeed, Mode=OneWay, Converter={StaticResource colorconvert}}"/>
+                Content="{Binding Money}" ContentStringFormat="Cost: {0}$" />
+            <Button Content="Add" Command="{Binding AddCommand}" Margin="4" Padding="3" FontSize="13"/>
+            <Button Content="Remove" Command="{Binding RemoveCommand}" Margin="4" Padding="3" FontSize="13" />
+            <Button Content="Edit" Command="{Binding EditCommand}" Margin="4" Padding="3" FontSize="13"/>
+            <Button Content="Save" Command="{Binding SaveCommand}" Margin="4" Padding="3" FontSize="13" />
+            <Button Content="BuySnack" Command="{Binding BuyCommand}" Margin="4" Padding="3" Height="60" FontSize="13" />
         </StackPanel>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Army}" SelectedItem="{Binding SelectedFromArmy}" FontSize="16">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding Type}" />
-                        <Label Content="{Binding Power}" ContentStringFormat="[{0}]" />
-                        <Label Content="{Binding Speed}" ContentStringFormat="[{0}]" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
     </Grid>
 </Window>
