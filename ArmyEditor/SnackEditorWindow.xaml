@@ -9,11 +9,11 @@
         Title="Edit Properties" Height="222" Width="319">
     <StackPanel x:Name="stack">
         <Label Content="Name" Padding="10" Background="LightBlue" />
-        <TextBox Text="{Binding Name, UpdateSourceTrigger=Explicit}" Padding="10"/>
+        <TextBox Text="{Binding Actual.Name, UpdateSourceTrigger=Explicit}" Padding="10"/>
         <Label Content="Price" Padding="10" Background="LightBlue" />
-        <TextBox Text="{Binding Price, UpdateSourceTrigger=Explicit}" Padding="10"/>
+        <TextBox Text="{Binding Actual.Price, UpdateSourceTrigger=Explicit}" Padding="10"/>
         <Label Content="Quantity" Padding="10" Background="LightBlue" />
-        <TextBox Text="{Binding Quantity, UpdateSourceTrigger=Explicit}" Padding="10"/>
+        <TextBox Text="{Binding Actual.Quantity, UpdateSourceTrigger=Explicit}" Padding="10"/>
         <Button Content="Save" Padding="10" Click="Button_Click"  />
     </StackPanel>
 </Window>
