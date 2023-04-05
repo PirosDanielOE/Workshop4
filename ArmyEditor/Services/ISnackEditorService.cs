@@ -9,6 +9,6 @@ namespace ArmyEditor.Services
 {
     public interface ISnackEditorService
     {
-        void Edit(Snacks snacks);
+        bool Edit(Snacks snacks);
     }
 }

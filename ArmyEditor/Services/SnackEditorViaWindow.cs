@@ -9,9 +9,21 @@ namespace ArmyEditor.Services
 {
     public class SnackEditorViaWindow : ISnackEditorService
     {
-        public void Edit(Snacks snacks)
+        public bool Edit(Snacks snacks)
         {
-            new SnackEditorWindow(snacks).ShowDialog();
+            bool? b = new SnackEditorWindow(snacks).ShowDialog();
+            if (b is null)
+            {
+                return false;
+            }
+            if (b is true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

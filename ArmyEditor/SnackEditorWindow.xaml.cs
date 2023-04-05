@@ -21,6 +21,7 @@ namespace ArmyEditor
     /// </summary>
     public partial class SnackEditorWindow : Window
     {
+        bool closebybutton = false;
         public SnackEditorWindow(Snacks snacks)
         {
             InitializeComponent();
@@ -43,7 +44,20 @@ namespace ArmyEditor
                     t.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 }
             }
+            this.closebybutton = true;
             this.DialogResult = true;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (closebybutton)
+            {
+                this.DialogResult = true;
+            }
+            else
+            {
+                this.DialogResult = false;
+            }
         }
     }
 }

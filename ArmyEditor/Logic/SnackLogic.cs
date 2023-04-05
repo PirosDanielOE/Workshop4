@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ArmyEditor.Logic
 {
@@ -33,7 +34,12 @@ namespace ArmyEditor.Logic
         {
             Snacks newsnack = new Snacks();
             snack.Add(newsnack);
-            this.EditSnack(newsnack);
+
+            bool exit = editorService.Edit(newsnack);
+            if (!exit) 
+            {
+                snack.Remove(newsnack);
+            }
             messenger.Send("Snack added", "SnackInfo");
         }
 
@@ -57,11 +63,15 @@ namespace ArmyEditor.Logic
         } 
         public void BuySnack(Snacks snacks)
         {
-            if (snacks.Quantity != 0)
+            if (this.Money-snacks.Quantity >= 0)
             {
                 snack.Select(x => x).Where(x => x.Name == snacks.Name).FirstOrDefault().Quantity--;
                 money-=snack.Select(x => x).Where(x => x.Name == snacks.Name).FirstOrDefault().Price;
                 messenger.Send("Price", "SnackInfo");
+            }
+            else
+            {
+                MessageBox.Show("Out of money","error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

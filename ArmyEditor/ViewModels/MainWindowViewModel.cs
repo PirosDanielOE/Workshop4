@@ -97,8 +97,7 @@ namespace ArmyEditor.ViewModels
             logic.SetupCollections(SnacksCollection);
 
             AddCommand = new RelayCommand(
-                () => logic.AddToCart(),
-                () => selectedSnack != null
+                () => logic.AddToCart()
                 );
             RemoveCommand = new RelayCommand(
                 () => logic.RemoveFromCart(selectedSnack),
