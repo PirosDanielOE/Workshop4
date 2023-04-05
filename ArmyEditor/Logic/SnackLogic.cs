@@ -14,9 +14,9 @@ namespace ArmyEditor.Logic
         IList<Snacks> cart;
         IList<Snacks> snack;
         IMessenger messenger;
-        ITrooperEditorService editorService;
+        ISnackEditorService editorService;
 
-        public SnackLogic(IMessenger messenger, ITrooperEditorService editorService)
+        public SnackLogic(IMessenger messenger, ISnackEditorService editorService)
         {
             this.messenger = messenger;
             this.editorService = editorService;

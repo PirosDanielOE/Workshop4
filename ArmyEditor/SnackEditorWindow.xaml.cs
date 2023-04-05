@@ -19,13 +19,13 @@ namespace ArmyEditor
     /// <summary>
     /// Interaction logic for TrooperEditorWindow.xaml
     /// </summary>
-    public partial class TrooperEditorWindow : Window
+    public partial class SnackEditorWindow : Window
     {
-        public TrooperEditorWindow(Snacks trooper)
+        public SnackEditorWindow(Snacks snacks)
         {
             InitializeComponent();
             var vm = new TrooperEditorWindowViewModel();
-            vm.Setup(trooper);
+            vm.Setup(snacks);
             this.DataContext = vm;
         }
 
