@@ -28,6 +28,9 @@ namespace ArmyEditor.ViewModels
             set 
             {
                 SetProperty(ref selectedSnack, value);
+                (AddCommand as RelayCommand).NotifyCanExecuteChanged();
+                (AddCommand as RelayCommand).NotifyCanExecuteChanged();
+                (RemoveCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
@@ -93,17 +96,19 @@ namespace ArmyEditor.ViewModels
             logic.SetupCollections(SnacksCollection);
 
             AddCommand = new RelayCommand(
-                () => logic.AddToCart(selectedSnack),
+                () => logic.AddToCart(),
                 () => selectedSnack != null
-                ) ;
-
+                );
             RemoveCommand = new RelayCommand(
                 () => logic.RemoveFromCart(selectedSnack),
                 () => selectedSnack != null
                 );
-
             EditCommand = new RelayCommand(
                 () => logic.EditSnack(selectedSnack),
+                () => selectedSnack != null
+                );
+            BuyCommand = new RelayCommand(
+                () => logic.BuySnack(selectedSnack),
                 () => selectedSnack != null
                 );
 
