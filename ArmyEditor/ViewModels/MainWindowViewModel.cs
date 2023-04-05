@@ -18,62 +18,32 @@ namespace ArmyEditor.ViewModels
     public class MainWindowViewModel : ObservableRecipient
     {
         ISnackLogic logic;
-        public ObservableCollection<Snacks> Barrack { get; set; }
-        public ObservableCollection<Snacks> Army { get; set; }
+        public ObservableCollection<Snacks> SnacksCollection { get; set; }
 
-        private Snacks selectedFromBarracks;
+        private Snacks selectedSnack;
 
-        public Snacks SelectedFromBarracks
+        public Snacks SelectedSnack
         {
-            get { return selectedFromBarracks; }
+            get { return selectedSnack; }
             set 
             {
-                SetProperty(ref selectedFromBarracks, value);
-                (AddToArmyCommand as RelayCommand).NotifyCanExecuteChanged();
-                (EditTrooperCommand as RelayCommand).NotifyCanExecuteChanged();
+                SetProperty(ref selectedSnack, value);
             }
         }
 
-        private Snacks selectedFromArmy;
+        public ICommand AddCommand { get; set; }
+        public ICommand RemoveCommand { get; set; }
+        public ICommand EditCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
+        public ICommand BuyCommand { get; set; }
 
-        public Snacks SelectedFromArmy
-        {
-            get { return selectedFromArmy; }
-            set
-            { 
-                SetProperty(ref selectedFromArmy, value);
-                (RemoveFromArmyCommand as RelayCommand).NotifyCanExecuteChanged();
-            }
-        }
-
-        public ICommand AddToArmyCommand { get; set; }
-        public ICommand RemoveFromArmyCommand { get; set; }
-        public ICommand EditTrooperCommand { get; set; }
-
-        public int AllCost
+        public int Money
         {
             get
             {
-                return logic.AllCost;
+                return logic.Money;
             }
         }
-
-        public double AVGPower
-        {
-            get
-            {
-                return logic.AVGPower;
-            }
-        }
-
-        public double AVGSpeed
-        {
-            get
-            {
-                return logic.AVGSpeed;
-            }
-        }
-
         public static bool IsInDesignMode
         {
             get
@@ -93,66 +63,54 @@ namespace ArmyEditor.ViewModels
         public MainWindowViewModel(ISnackLogic logic)
         {
             this.logic = logic;
-            Barrack = new ObservableCollection<Snacks>();
-            Army = new ObservableCollection<Snacks>();
+            SnacksCollection = new ObservableCollection<Snacks>();
 
-            Barrack.Add(new Snacks()
+            SnacksCollection.Add(new Snacks()
             {
-                Type = "marine",
-                Power = 8,
-                Speed = 6
+                Name = "Twix",
+                Price = 300,
+                Quantity = 20
             });
-            Barrack.Add(new Snacks()
+            SnacksCollection.Add(new Snacks()
             {
-                Type = "pilot",
-                Power = 7,
-                Speed = 3
+                Name = "Mars",
+                Price = 300,
+                Quantity = 16
             });
-            Barrack.Add(new Snacks()
+            SnacksCollection.Add(new Snacks()
             {
-                Type = "infantry",
-                Power = 6,
-                Speed = 8
+                Name = "Balaton szelet",
+                Price = 250,
+                Quantity = 4
             });
-            Barrack.Add(new Snacks()
+            SnacksCollection.Add(new Snacks()
             {
-                Type = "sniper",
-                Power = 3,
-                Speed = 3
-            });
-            Barrack.Add(new Snacks()
-            {
-                Type = "engineer",
-                Power = 5,
-                Speed = 6
+                Name = "KitKat",
+                Price = 350,
+                Quantity = 0
             });
 
-            Army.Add(Barrack[2].GetCopy());
-            Army.Add(Barrack[4].GetCopy());
+            logic.SetupCollections(SnacksCollection);
 
-            logic.SetupCollections(Barrack, Army);
-
-            AddToArmyCommand = new RelayCommand(
-                () => logic.AddToArmy(SelectedFromBarracks),
-                () => SelectedFromBarracks != null
+            AddCommand = new RelayCommand(
+                () => logic.AddToCart(selectedSnack),
+                () => selectedSnack != null
                 ) ;
 
-            RemoveFromArmyCommand = new RelayCommand(
-                () => logic.RemoveFromArmy(SelectedFromArmy),
-                () => SelectedFromArmy != null
+            RemoveCommand = new RelayCommand(
+                () => logic.RemoveFromCart(selectedSnack),
+                () => selectedSnack != null
                 );
 
-            EditTrooperCommand = new RelayCommand(
-                () => logic.EditTrooper(SelectedFromBarracks),
-                () => SelectedFromBarracks != null
+            EditCommand = new RelayCommand(
+                () => logic.EditSnack(selectedSnack),
+                () => selectedSnack != null
                 );
 
-            Messenger.Register<MainWindowViewModel, string, string>(this, "TrooperInfo", (recipient, msg) =>
-             {
-                 OnPropertyChanged("AllCost");
-                 OnPropertyChanged("AVGPower");
-                 OnPropertyChanged("AVGSpeed");
-             });
+            Messenger.Register<MainWindowViewModel, string, string>(this, "SnackInfo", (recipient, msg) =>
+            {
+                 OnPropertyChanged("Money");
+            });
         }
     }
 }

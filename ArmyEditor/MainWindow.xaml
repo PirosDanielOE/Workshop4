@@ -19,7 +19,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{Binding Snacks}" SelectedItem="{Binding SelectedSnack}" HorizontalContentAlignment="Stretch">
+        <ListBox Grid.Column="0" ItemsSource="{Binding SnacksCollection}" SelectedItem="{Binding SelectedSnack}" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -31,7 +31,7 @@
                         </Grid.ColumnDefinitions>
                         
                         <Label Content="{Binding Name}" FontSize="14" FontWeight="Bold" Grid.Column="0"/>
-                        <Label Content="{Binding Cost}" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+                        <Label Content="{Binding Price}" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
                         <Label Content="{Binding Quantity}" FontSize="14" FontWeight="Bold" Grid.Column="2"/>
                         <ProgressBar Maximum="10" Margin="10" Value="{Binding Quantity}" Foreground="{Binding Quantity, Converter={StaticResource quantityconvert}}" Grid.Row="2" Height="10" Grid.Column="3"/>
                     </Grid>
@@ -40,7 +40,7 @@
         </ListBox>
         <StackPanel Grid.Column="1" >
             <Label HorizontalContentAlignment="Center" FontSize="14"
-                Content="{Binding Money}" ContentStringFormat="Cost: {0}$" />
+                Content="{Binding Money}" ContentStringFormat="Cost: {0} Ft" />
             <Button Content="Add" Command="{Binding AddCommand}" Margin="4" Padding="3" FontSize="13"/>
             <Button Content="Remove" Command="{Binding RemoveCommand}" Margin="4" Padding="3" FontSize="13" />
             <Button Content="Edit" Command="{Binding EditCommand}" Margin="4" Padding="3" FontSize="13"/>
