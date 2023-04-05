@@ -10,5 +10,6 @@ namespace ArmyEditor.Logic
         void EditSnack(Snacks snacks);
         void RemoveFromCart(Snacks snacks);
         void SetupCollections(IList<Snacks> snacks);
+        void BuySnack(Snacks snacks);
     }
 }
