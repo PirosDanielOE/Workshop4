@@ -14,13 +14,17 @@ namespace ArmyEditor.Helpers
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double number = double.Parse(value.ToString());
-            if (number <= 3)
+            if (number <= 5)
             {
                 return Brushes.Red;
             }
-            else if (number <= 7)
+            else if (number <= 10)
             {
                 return Brushes.Yellow;
+            }
+            else if (number <= 15)
+            {
+                return Brushes.LightGreen;
             }
             else
             {

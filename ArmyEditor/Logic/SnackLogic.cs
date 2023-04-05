@@ -11,7 +11,6 @@ namespace ArmyEditor.Logic
 {
     public class SnackLogic : ISnackLogic
     {
-        IList<Snacks> cart;
         IList<Snacks> snack;
         IMessenger messenger;
         ISnackEditorService editorService;
@@ -20,18 +19,18 @@ namespace ArmyEditor.Logic
         {
             this.messenger = messenger;
             this.editorService = editorService;
+            money = 5000;
         }
 
 
-        public void SetupCollections(IList<Snacks> carts, IList<Snacks> snacks)
+        public void SetupCollections(IList<Snacks> snacks)
         {
-            this.cart = carts;
             this.snack = snacks;
         }
 
         public void AddToCart(Snacks snacks)
         {
-            snack.Add(snacks.GetCopy());
+            snack.Add(snacks);
             messenger.Send("Snack added", "SnackInfo");
         }
 
@@ -45,6 +44,14 @@ namespace ArmyEditor.Logic
         {
             editorService.Edit(snacks);
         }
+        private int money;
+        public int Money
+        {
+            get
+            {
+                return this.money;  
+            }
+        } 
 
 
     }
