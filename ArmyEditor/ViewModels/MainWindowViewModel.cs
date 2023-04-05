@@ -17,13 +17,13 @@ namespace ArmyEditor.ViewModels
 {
     public class MainWindowViewModel : ObservableRecipient
     {
-        IArmyLogic logic;
-        public ObservableCollection<Trooper> Barrack { get; set; }
-        public ObservableCollection<Trooper> Army { get; set; }
+        ISnackLogic logic;
+        public ObservableCollection<Snacks> Barrack { get; set; }
+        public ObservableCollection<Snacks> Army { get; set; }
 
-        private Trooper selectedFromBarracks;
+        private Snacks selectedFromBarracks;
 
-        public Trooper SelectedFromBarracks
+        public Snacks SelectedFromBarracks
         {
             get { return selectedFromBarracks; }
             set 
@@ -34,9 +34,9 @@ namespace ArmyEditor.ViewModels
             }
         }
 
-        private Trooper selectedFromArmy;
+        private Snacks selectedFromArmy;
 
-        public Trooper SelectedFromArmy
+        public Snacks SelectedFromArmy
         {
             get { return selectedFromArmy; }
             set
@@ -85,42 +85,42 @@ namespace ArmyEditor.ViewModels
 
 
         public MainWindowViewModel()
-            :this(IsInDesignMode ? null : Ioc.Default.GetService<IArmyLogic>())
+            :this(IsInDesignMode ? null : Ioc.Default.GetService<ISnackLogic>())
         {
 
         }
 
-        public MainWindowViewModel(IArmyLogic logic)
+        public MainWindowViewModel(ISnackLogic logic)
         {
             this.logic = logic;
-            Barrack = new ObservableCollection<Trooper>();
-            Army = new ObservableCollection<Trooper>();
+            Barrack = new ObservableCollection<Snacks>();
+            Army = new ObservableCollection<Snacks>();
 
-            Barrack.Add(new Trooper()
+            Barrack.Add(new Snacks()
             {
                 Type = "marine",
                 Power = 8,
                 Speed = 6
             });
-            Barrack.Add(new Trooper()
+            Barrack.Add(new Snacks()
             {
                 Type = "pilot",
                 Power = 7,
                 Speed = 3
             });
-            Barrack.Add(new Trooper()
+            Barrack.Add(new Snacks()
             {
                 Type = "infantry",
                 Power = 6,
                 Speed = 8
             });
-            Barrack.Add(new Trooper()
+            Barrack.Add(new Snacks()
             {
                 Type = "sniper",
                 Power = 3,
                 Speed = 3
             });
-            Barrack.Add(new Trooper()
+            Barrack.Add(new Snacks()
             {
                 Type = "engineer",
                 Power = 5,

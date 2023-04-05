@@ -9,7 +9,7 @@ namespace ArmyEditor.Services
 {
     public class TrooperEditorViaWindow : ITrooperEditorService
     {
-        public void Edit(Trooper trooper)
+        public void Edit(Snacks trooper)
         {
             new TrooperEditorWindow(trooper).ShowDialog();
         }

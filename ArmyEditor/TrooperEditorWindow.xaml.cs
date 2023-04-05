@@ -21,7 +21,7 @@ namespace ArmyEditor
     /// </summary>
     public partial class TrooperEditorWindow : Window
     {
-        public TrooperEditorWindow(Trooper trooper)
+        public TrooperEditorWindow(Snacks trooper)
         {
             InitializeComponent();
             var vm = new TrooperEditorWindowViewModel();

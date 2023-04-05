@@ -12,9 +12,9 @@ namespace ArmyEditor.ViewModels
 {
     public class TrooperEditorWindowViewModel
     {
-        public Trooper Actual { get; set; }
+        public Snacks Actual { get; set; }
 
-        public void Setup(Trooper trooper)
+        public void Setup(Snacks trooper)
         {
             this.Actual = trooper;
         }
