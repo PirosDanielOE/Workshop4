@@ -24,7 +24,7 @@ namespace ArmyEditor
         public SnackEditorWindow(Snacks snacks)
         {
             InitializeComponent();
-            var vm = new TrooperEditorWindowViewModel();
+            var vm = new EditorWindowViewModel();
             vm.Setup(snacks);
             this.DataContext = vm;
         }

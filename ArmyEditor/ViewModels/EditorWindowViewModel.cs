@@ -10,17 +10,17 @@ using System.Windows.Input;
 
 namespace ArmyEditor.ViewModels
 {
-    public class TrooperEditorWindowViewModel
+    public class EditorWindowViewModel
     {
         public Snacks Actual { get; set; }
 
-        public void Setup(Snacks trooper)
+        public void Setup(Snacks snack)
         {
-            this.Actual = trooper;
+            this.Actual = snack;
         }
 
         
-        public TrooperEditorWindowViewModel()
+        public EditorWindowViewModel()
         {
             
         }
