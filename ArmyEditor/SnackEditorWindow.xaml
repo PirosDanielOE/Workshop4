@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ArmyEditor"
         xmlns:vms="clr-namespace:ArmyEditor.ViewModels"
         mc:Ignorable="d"
-        Title="Edit Properties" Height="222" Width="319">
+        Title="Edit Properties" Height="276" Width="319">
     <StackPanel x:Name="stack">
         <Label Content="Name" Padding="10" Background="LightBlue" />
         <TextBox Text="{Binding Name, UpdateSourceTrigger=Explicit}" Padding="10"/>
