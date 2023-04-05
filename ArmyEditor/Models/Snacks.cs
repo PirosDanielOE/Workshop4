@@ -30,16 +30,6 @@ namespace ArmyEditor.Models
             set { SetProperty(ref quantity, value); }
         }
 
-        public Snacks GetCopy()
-        {
-            return new Snacks()
-            {
-                Name = this.Name,
-                Price = this.Price,
-                Quantity = this.Quantity,
-            };
-        }
-
 
     }
 }

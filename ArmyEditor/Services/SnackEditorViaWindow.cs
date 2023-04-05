@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace ArmyEditor.Services
 {
-    public interface ITrooperEditorService
+    public class SnackEditorViaWindow : ISnackEditorService
     {
-        void Edit(Snacks trooper);
+        public void Edit(Snacks snacks)
+        {
+            new SnackEditorWindow(snacks).ShowDialog();
+        }
     }
 }

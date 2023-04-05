@@ -23,7 +23,7 @@ namespace ArmyEditor
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                     .AddSingleton<ISnackLogic, SnackLogic>()
-                    .AddSingleton<ITrooperEditorService, TrooperEditorViaWindow>()
+                    .AddSingleton<ISnackEditorService, SnackEditorViaWindow>()
                     .AddSingleton<IMessenger>(WeakReferenceMessenger.Default)
                     .BuildServiceProvider()
                 );
