@@ -29,8 +29,9 @@ namespace ArmyEditor.ViewModels
             {
                 SetProperty(ref selectedSnack, value);
                 (AddCommand as RelayCommand).NotifyCanExecuteChanged();
-                (AddCommand as RelayCommand).NotifyCanExecuteChanged();
+                (EditCommand as RelayCommand).NotifyCanExecuteChanged();
                 (RemoveCommand as RelayCommand).NotifyCanExecuteChanged();
+                (BuyCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
