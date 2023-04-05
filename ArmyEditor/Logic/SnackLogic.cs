@@ -2,6 +2,7 @@
 using ArmyEditor.Services;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,8 +32,8 @@ namespace ArmyEditor.Logic
         public void AddToCart()
         {
             Snacks newsnack = new Snacks();
-            editorService.Edit(newsnack);
             snack.Add(newsnack);
+            this.EditSnack(newsnack);
             messenger.Send("Snack added", "SnackInfo");
         }
 
